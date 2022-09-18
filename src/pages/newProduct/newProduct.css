@@ -1,0 +1,29 @@
+.newProduct{
+    flex: 1;
+}
+
+.newProductForm{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.newProductItem{
+    width: 400px;
+    display: flex;
+    flex-direction: columns;
+    margin-top: 10px;
+    margin-right: 20px;
+}
+
+.newProductItem>label{
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.newProductItem>input{
+    height: 20px;
+    padding: 10px;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
