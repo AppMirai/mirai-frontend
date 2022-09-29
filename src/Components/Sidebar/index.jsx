@@ -11,10 +11,10 @@ const Sidebar = () => {
         <hr />
         <ul className="nav nav-pills flex-column mb-auto">
           <li className="nav-item">
-            <a href="#" className="nav-link active" aria-current="page">
+            <Link to="/" className="nav-link text-white">
               <svg className="bi me-2" width={16} height={16}></svg>
               Home
-            </a>
+            </Link>
           </li>
           <li>
             <Link to="/form" className="nav-link text-white">
@@ -23,16 +23,16 @@ const Sidebar = () => {
             </Link>
           </li>
           <li>
-            <a href="#" className="nav-link text-white">
+            <Link to="/product" className="nav-link text-white">
               <svg className="bi me-2" width={16} height={16}></svg>
               Products
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#" className="nav-link text-white">
+          <Link to="/user" className="nav-link text-white">
               <svg className="bi me-2" width={16} height={16}></svg>
               User
-            </a>
+            </Link>
           </li>
         </ul>
         <hr />

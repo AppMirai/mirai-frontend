@@ -1,6 +1,8 @@
 import React from 'react'
+import { useLocation } from 'react-router-dom';
 
 const TableProducts = () => {
+    const location = useLocation();
     return (
         <table className="table">
             <thead>
@@ -13,6 +15,9 @@ const TableProducts = () => {
                     <th scope="col">Description</th>
                     <th scope="col">Shopee</th>
                     <th scope="col">Tokopedia</th>
+                    {
+                        location.pathname == "/product" && <th scope="col">Action</th> 
+                    }
                 </tr>
             </thead>
             <tbody>
@@ -33,6 +38,12 @@ const TableProducts = () => {
                     </td>
                     <td>https://shopee.co.id/</td>
                     <td>https://www.tokopedia.com/</td>
+                    {
+                        location.pathname == "/product" && <td className='d-flex'>
+                        <button className='btn btn-primary me-3'>Edit</button>
+                        <button className='btn btn-danger'>Delete</button>
+                    </td>
+                    }
                 </tr>
             </tbody>
         </table>
