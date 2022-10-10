@@ -1,9 +1,11 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom';
+import PageLayout from '../../PageLayout'
 
 const TableProducts = () => {
     const location = useLocation();
     return (
+        <PageLayout>
         <table className="table">
             <thead>
                 <tr>
@@ -47,6 +49,7 @@ const TableProducts = () => {
                 </tr>
             </tbody>
         </table>
+        </PageLayout>
     )
 }
 

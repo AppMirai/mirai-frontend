@@ -1,9 +1,11 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom';
+import PageLayout from '../../PageLayout'
 
 const TableUsers = () => {
     const location = useLocation();
     return (
+        <PageLayout>
         <table className="table">
             <thead>
                 <tr>
@@ -26,6 +28,7 @@ const TableUsers = () => {
                 </tr>
             </tbody>
         </table>
+        </PageLayout>
     )
 }
 
