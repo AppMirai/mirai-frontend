@@ -9,6 +9,7 @@ import TableProducts from './Pages/Products/TableProducts';
 import TableUsers from './Pages/User/TableUsers';
 import LoginAdmin from './Pages/Admin/LoginAdmin';
 import RegisAdmin from './Pages/Admin/RegisAdmin';
+import ProductList from './Components/ProductList';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -17,6 +18,7 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route index element={<TableProducts />} />
+        <Route exact path="/products" element={<ProductList />} />
         <Route exact path="/login" element={<LoginAdmin />} />
         <Route exact path="/regis" element={<RegisAdmin />} />
         <Route exact path="/form" element={<FormAddProducts />} />

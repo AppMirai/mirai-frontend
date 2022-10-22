@@ -3,9 +3,13 @@ import Sidebar from "./Components/Sidebar";
 import FormAddProducts from "./Pages/Products/FormAddProducts";
 import TableProducts from "./Pages/Products/TableProducts";
 import "./App.css"
+import NewsList from "./Components/ProductList";
 
 function App() {
-  return (<></>
+  return (
+    <div className="App">
+      <></>
+    </div>
   );
 }
 
