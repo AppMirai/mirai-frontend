@@ -3,7 +3,6 @@ import axios from 'axios';
 import bg from "../../Assets/bg.png";
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react';
-import hasToken from '../../Service/authService';
 
 const SignIn = () => {
 
