@@ -1,7 +1,9 @@
 import React from 'react'
+import axios from 'axios';
 import bg from "../../Assets/bg.png";
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react';
+import hasToken from '../../Service/authService';
 
 const SignIn = () => {
 
@@ -37,7 +39,7 @@ const SignIn = () => {
             alert("Login gagal");
         }
 
-        // LOGIC TANPA REQUEST API
+        // LOGIC DENGAN REQUEST API
         // const requestBody = { email: user.email, password: user.password };
         // axios
         //     .post(`http://localhost:8000/api/auth/login`, requestBody)
