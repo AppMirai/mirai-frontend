@@ -1,56 +1,89 @@
-import React from 'react'
-import PageLayout from '../../PageLayout'
+import React, { useState, useEffect } from "react";
+import PageLayout from "../../PageLayout";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const TableProducts = () => {
-    return (
-        <PageLayout>
-            <table className='tableproducts'>
-                <table class="table-fixed">
-                    <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Image</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Shade</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Shopee</th>
-                            <th scope="col">Tokopedia</th>
-                            {
-                                <th scope="col">Action</th>
-                            }
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>Rp 10.0000</td>
-                            <td>Pink</td>
-                            <td>  Line 6:13:   The href attribute requires a valid value to be accessible. Provide a valid, navigable address as the href value. If you cannot provide a valid href, but still need the element to resemble a link, use a
-                                button and change it with appropriate styles. Learn more: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.md  jsx-a11y/anchor-is-valid
-                                Line 13:25:  The href attribute requires a valid value to be accessible. Provide a valid, navigable address as the href value. If you cannot provide a valid href, but still need the element to resemble a link, use a
-                                button and change it with appropriate styles. Learn more: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.md  jsx-a11y/anchor-is-valid
-                                Line 16:25:  The href attribute requires a valid value to be accessible. Provide a valid, navigable address as the href value. If you cannot provide a valid href, but still need the element to resemble a link, use a
-                                button and change it with appropriate styles. Learn more: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.md  jsx-a11y/anchor-is-valid
-                                Line 19:25:  The href attribute requires a valid value to be accessible. Provide a valid, navigable address as the href value. If you cannot provide a valid href, but still need the element to resemble a link, use a
-                                button and change it with appropriate styles. Learn more: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.md  jsx-a11y/anchor-is-valid
-                            </td>
-                            <td>https://shopee.co.id/</td>
-                            <td>https://www.tokopedia.com/</td>
-                            {
-                                <td className='flex'>
-                                    <button className='inline-block align-middle text-center select-none border font-normal whitespace-no-wrap rounded py-1 px-3 leading-normal no-underline bg-blue-600 text-white hover:bg-blue-600 me-3'>Edit</button>
-                                    <button className='inline-block align-middle text-center select-none border font-normal whitespace-no-wrap rounded py-1 px-3 leading-normal no-underline bg-red-600 text-white hover:bg-red-700' href='/editproducts'>Delete</button>
-                                </td>
-                            }
-                        </tr>
-                    </tbody>
-                </table>
-            </table>
-        </PageLayout>
-    )
-}
+  const [product, setProduct] = useState(null);
 
-export default TableProducts
+  const navigate = useNavigate();
+
+  const handleEdit = () => {
+    navigate("/formproducts");
+  };
+
+  const handleCreate = () => {};
+
+  const handleDelete = (event) => {
+    // axios
+    //   .delete(`http://20.89.56.97:5000/api/products/delete/{id}`, {
+    //     headers: { Authorization: `Bearer ${token}` },
+    //   })
+    //   .then((res) => {
+    //     console.log(res);
+    //     console.log(res.data);
+    //   });
+  };
+
+  useEffect(() => {
+    const x = localStorage.getItem("token");
+    console.log(x);
+    axios.get(`http://20.89.56.97:5000/api/products`).then((res) => {
+      const { data } = res.data;
+      setProduct(data);
+    });
+  }, []);
+
+  if (!product) return "No Product";
+  return (
+    <PageLayout>
+      <table className="table-fixed">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Image</th>
+            <th scope="col">Price</th>
+            <th scope="col">Description</th>
+            <th scope="col">Shopee</th>
+            <th scope="col">Tokopedia</th>
+            {<th scope="col">Action</th>}
+          </tr>
+        </thead>
+        <tbody>
+          {product.map((item, i) => {
+            return (
+              <>
+                <tr>
+                  <th scope="row">{i + 1}</th>
+                  <td>{item.name}</td>
+                  <td>{item.product_image_url}</td>
+                  <td>Rp. {item.price}</td>
+                  <td>{item.description}</td>
+                  <td>{item.link_shopee}</td>
+                  <td>{item.link_tokopedia}</td>
+                  <td className="flex">
+                    <button
+                      className="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap rounded py-1 px-3 leading-normal no-underline bg-blue-600 text-white hover:bg-blue-600 me-3"
+                      onClick={handleEdit}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap rounded py-1 px-3 leading-normal no-underline bg-red-600 text-white hover:bg-red-700"
+                      onClick={handleDelete}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              </>
+            );
+          })}
+        </tbody>
+      </table>
+    </PageLayout>
+  );
+};
+
+export default TableProducts;
